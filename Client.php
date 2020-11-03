@@ -4,11 +4,13 @@ class Client {
     private $clientID;
     private $name;
     private $phoneNum;
+    private $cardNum;
     private $balance;
     
-    function Client($name, $phoneNum, $balance, $clientID){
+    function Client($name, $phoneNum, $cardNum, $balance, $clientID){
         $this->name = $name;
         $this->phoneNum = $phoneNum;
+        $this->cardNum = $cardNum;
         $this->balance = $balance;
         $this->clientID = $clientID;
     }
@@ -21,8 +23,16 @@ class Client {
         $this->balance += $amount;
     }
     
+    public function getCardNum(){
+        return $this->cardNum;
+    }
+    
     public function getName(){
         return $this->name;
+    }
+    
+    public function getPhoneNum(){
+        return $this->phoneNum;
     }
     
     public function changePhoneNum($newNum){

@@ -14,7 +14,7 @@ class ATM {
         $json_a = json_decode($data);
         foreach ($json_a as $clientID => $client){
             if ($input == $client->cardNum || $input == $client->phoneNum){
-                $curClient = new Client($client->name, $client->phoneNum, $client->balance, $clientID);
+                $curClient = new Client($client->name, $client->phoneNum, $client->cardNum, $client->balance, $clientID);
                 return $curClient;
             }
         }
@@ -64,6 +64,13 @@ class ATM {
     private function transfer($client){
         echo "Enter recipient card number or phone number\n";
         $recipientNum = readline();
+       
+        //failsafe if client enters his own number, useless now but may be good idea if transfers have a commission 
+        if ($recipientNum == $client->getCardNum() || $recipientNum == $client->getPhoneNum()){
+            echo "You have entered your own account info!\n";
+            return;
+        }
+        
         $recipient = $this->validate($recipientNum);
         if ($recipient){
         echo "Enter how much do you want to transfer\n";
