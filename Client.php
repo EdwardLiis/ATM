@@ -30,6 +30,7 @@ class Client {
         echo "You successfully changed your phone number\n";
     }    
     
+    //push changes in balance of phone number into database
     public function submitChanges(){
         $data = file_get_contents("Database.json");
         $json_a = json_decode($data);
