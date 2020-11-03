@@ -4,7 +4,6 @@ include 'Client.php';
 
 class ATM {
     
-    //Default message on screen
     public function init(){
         echo "Welcome to SomeBankATM \nTo start, please enter your card number or phone number \n";
     }
@@ -29,7 +28,6 @@ class ATM {
             return $this->validate($input);
         }
     } 
-    
     //withdraw money from account
     private function withdraw($client){
         echo "How much do you want to withdraw?\n";
@@ -82,10 +80,11 @@ class ATM {
         
     }
     
+    //operation menu controller. 
     public function action($client, $input){
         switch($input){
             case 1: 
-                echo $client->getBalance()."\n";
+                echo "Your balance is ".$client->getBalance()."\n";
                 break;
             case 2:
                 $this->withdraw($client);
@@ -98,6 +97,9 @@ class ATM {
                 break;
             case 5: 
                $this->numChange($client);
+                break;
+            default:
+                echo "Invalid input\n";
                 break;
         }
     }
